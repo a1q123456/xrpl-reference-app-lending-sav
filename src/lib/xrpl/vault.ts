@@ -22,6 +22,9 @@ export interface VaultCreateOptions {
   assetsMaximum?: string;
   /** tfVaultShareNonTransferable — shares cannot be transferred to another account. */
   nonTransferableShares?: boolean;
+  /** XLS-65.1 closed-ended vault */
+  subscriptionDate: Date;
+  redemptionDate: Date;
   /** XLS-89 compressed metadata for the share MPT (`t`, `n`, `d`, `i`, `ac`, `as`, `in`). */
   shareMetadata?: {
     ticker?: string;
@@ -59,6 +62,8 @@ export function buildVaultCreate(
     Flags: options.nonTransferableShares ? VaultCreateFlags.tfVaultShareNonTransferable : 0,
     WithdrawalPolicy: 1, // vaultStrategyFirstComeFirstServe
     VaultKind: 1, // closed-ended
+    SubscriptionDate: options.subscriptionDate,
+    RedemptionDate: options.redemptionDate
   };
 
   if (options.name || options.website) {
