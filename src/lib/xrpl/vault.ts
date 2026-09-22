@@ -58,6 +58,7 @@ export function buildVaultCreate(
     Asset: asset,
     Flags: options.nonTransferableShares ? VaultCreateFlags.tfVaultShareNonTransferable : 0,
     WithdrawalPolicy: 1, // vaultStrategyFirstComeFirstServe
+    VaultKind: 1, // closed-ended
   };
 
   if (options.name || options.website) {
